@@ -1,0 +1,29 @@
+*{
+    font-family: 'Montserrat';
+    font-style: normal;
+}
+
+body{
+    max-width: 1440px;
+    margin: auto;
+}
+
+.bold{
+    font-weight: 600;
+}
+
+.flex{
+    display: flex;
+}
+
+.flex--wrap{
+    flex-wrap: wrap;
+}
+
+.flex--row{
+    flex-direction: row;
+}
+
+.flex--column{
+    flex-direction: column;
+}

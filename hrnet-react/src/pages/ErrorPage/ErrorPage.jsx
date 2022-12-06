@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 // CSS Import
-import "../styles/pages/ErrorPage.css"
+import "./ErrorPage.css"
 
 // React/React-router components import
 import { NavLink } from 'react-router-dom';

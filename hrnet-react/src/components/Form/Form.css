@@ -1,0 +1,70 @@
+/* Form style */
+form{
+    row-gap: 40px;
+    column-gap: 50px;
+    align-items: center;
+    width: 100%;
+}
+
+input, select{
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 2px #146EBE;
+    outline-color: #74C0FC;
+}
+
+input:focus-within, select:focus-within{
+    border-color: #74C0FC;
+    outline-color: #74C0FC;
+}
+
+label, input, select, fieldset, legend{
+    font-weight: 500;
+    margin: 0px;
+}
+
+legend{
+    padding: 0px 10px;
+    border: solid 2px #146EBE;
+    border-radius: 5px;
+}
+
+.inputContainer{
+    row-gap: 10px;
+    margin: 0;
+    padding: 10px;
+    width: 50%;
+    min-width: 270px;
+}
+
+@media screen and (max-width:900px){
+    .inputContainer{
+        width: 100%;
+        padding: 0px;
+    }
+}
+
+fieldset.inputContainer{
+    border: solid 1px #c8c8c8;
+    border-radius: 10px;
+    padding: 9px;
+    justify-content: space-evenly;
+}
+
+@media screen and (max-width:900px){
+    fieldset.inputContainer{
+        width: calc(100% - 20px);
+    }
+}
+
+.formContainer{
+    column-gap: 50px;
+    row-gap: 30px;
+    width: 100%;
+}
+
+@media screen and (max-width:900px){
+    .formContainer{
+        flex-direction: column;
+    }
+}

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 // CSS import
-import "../styles/pages/CreateEmployeePage.css";
+import "./CreateEmployeePage.css";
 
 // Custom components import
 import { Modal } from "hrnet-react-components";
@@ -12,11 +12,11 @@ import { NavLink } from 'react-router-dom';
 
 // FontAwesomeIcons import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard, faUserPlus, faCalendarDay, faUsersRectangle, faHouseChimneyUser } from "@fortawesome/free-solid-svg-icons";
+import { faIdCard, faUserPlus, faCalendarDay, faUsersRectangle, faHouseChimneyUser, faList, faHouse } from "@fortawesome/free-solid-svg-icons";
 
 // Store functions import
-import { setModalDisplay } from "../store/store";
-import Form from "../components/Form";
+import { setModalDisplay } from "../../store/store";
+import Form from "../../components/Form/Form";
 
 export default function CreateEmployeePage(){
 
@@ -41,17 +41,24 @@ export default function CreateEmployeePage(){
 
   return(
       <main>
-        <h1 className="flex mainTitle">HRnet</h1>
         
-        <section className="flex flex--column">
-          <h2 className="sectionTitle">Create Employee</h2>
-          <Form />
+        <section className="flex flex--column createSection">
+          <h2 className="flex sectionTitle">Create Employee</h2>
+          <Form manageModalState={manageModalState}/>
           
-          <div className="buttonsContainer flex flex--column">
-          <button onClick={manageModalState} className="btn">Save</button>
+          <div className="buttonsContainer flex flex--row">
             <NavLink to="/list">
-              <button className="btn">View current employees list</button>
+              <button className="btn">
+                <FontAwesomeIcon icon={faList} color="#FFFFFF" fixedWidth size="xl"/>
+                View current employees list
+              </button>
             </NavLink>
+            <NavLink to="/">
+              <button className="btn">
+                <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
+                Back to home
+              </button>
+            </NavLink>         
           </div>
         </section>
         

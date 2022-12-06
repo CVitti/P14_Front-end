@@ -1,21 +1,24 @@
 // @ts-nocheck
 
 // CSS Import
-import '../styles/pages/App.css';
+import '../styles/global.css';
 
 // React/React-router/Redux components import
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 // Custom components import
-import HomePage from "../pages/HomePage"
-import CreateEmployeePage from "../pages/CreateEmployeePage"
-import EmployeeListPage from "../pages/EmployeeListPage"
-import ErrorPage from "../pages/ErrorPage"
+import HomePage from "../pages/HomePage/HomePage"
+import CreateEmployeePage from "../pages/CreateEmployeePage/CreateEmployeePage"
+import EmployeeListPage from "../pages/EmployeeListPage/EmployeeListPage"
+import ErrorPage from "../pages/ErrorPage/ErrorPage"
+import Header from '../components/Header/Header';
 
 function Router() {
   return (
     <BrowserRouter>
-        <Routes>          
+      <Header /> 
+        <Routes> 
+                  
           {/* Home Page Route */}
           <Route path="/" element={<HomePage />}/>
           {/* Home Page Route */}

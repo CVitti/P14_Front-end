@@ -1,0 +1,21 @@
+/* Error page style */
+.errorSection{
+    align-items: center;
+    row-gap: 50px;
+}
+
+.errorSection h2.sectionTitle{
+    column-gap: 10px;
+    align-items: center;
+    font-size: 36px;
+    margin: 5px;
+}
+
+.errorSection h2 span{
+    color: #146EBE;
+    font-size: 48px;
+}
+
+.errorSection p{
+    margin: 0;
+}

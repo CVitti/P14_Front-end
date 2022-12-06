@@ -1,5 +1,8 @@
 // @ts-nocheck
 
+// CSS import
+import "./EmployeeListPage.css";
+
 // React-router import
 import { NavLink } from 'react-router-dom';
 

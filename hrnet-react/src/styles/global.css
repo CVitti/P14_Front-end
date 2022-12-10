@@ -12,6 +12,10 @@ body{
     font-weight: 600;
 }
 
+.hidden{
+    display: none;
+}
+
 .flex{
     display: flex;
 }
@@ -36,28 +40,14 @@ h2.sectionTitle{
     width: fit-content;
 }
 
-/* Button style for the app*/
-a{
-    text-decoration: none;
-}
-
-.btn{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #146EBE;
-    border-color: transparent;
-    border-radius: 5px;
-    font-weight: 600;
-    color: #FFFFFF;
-    cursor: pointer;
-    column-gap: 10px;
-}
-
-/* Blocks style */
+/* Global blocks style */
 main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+a{
+    text-decoration: none;
 }

@@ -10,6 +10,9 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
+// Custom components import
+import CustomButton from "../../components/CustomButton/CustomButton";
+
 export default function EmployeeListPage(){
     return (
         <main>
@@ -18,11 +21,11 @@ export default function EmployeeListPage(){
             <h2 className="flex sectionTitle">Current employees list</h2>            
                 <div className="buttonsContainer flex flex--row">
                     <NavLink to="/">
-                        <button className="btn">
-                            <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
+                        <CustomButton 
+                            icon={<FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>}>  
                             Back to home
-                        </button>
-                    </NavLink>
+                        </CustomButton>
+                    </NavLink>   
                 </div>         
             </section>
         </main>

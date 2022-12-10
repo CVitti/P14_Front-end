@@ -10,6 +10,9 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
+// Custom components import
+import CustomButton from "../../components/CustomButton/CustomButton";
+
 export default function ErrorPage(){
     return(
         <main className="errorMain">
@@ -18,12 +21,12 @@ export default function ErrorPage(){
                 <p className="bold">
                     This page doesn't exist.
                 </p>        
-                <NavLink to="/" >
-                    <button className="btn">
-                        <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
+                <NavLink to="/">
+                    <CustomButton 
+                        icon={<FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>}>  
                         Back to home
-                    </button>
-                </NavLink>        
+                    </CustomButton>
+                </NavLink>         
             </section>
         </main>
     );

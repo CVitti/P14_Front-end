@@ -23,14 +23,14 @@ export default function CreateEmployeePage(){
           
           <div className="buttonsContainer flex flex--row">
             <NavLink to="/list">
-              <CustomButton 
-                icon={<FontAwesomeIcon icon={faList} color="#FFFFFF" fixedWidth size="xl"/>}>  
+              <CustomButton>
+                <FontAwesomeIcon icon={faList} color="#FFFFFF" fixedWidth size="xl"/>  
                 View current employees list
               </CustomButton>
             </NavLink>
             <NavLink to="/">
-              <CustomButton 
-                icon={<FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>}>  
+              <CustomButton> 
+                <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
                 Back to home
               </CustomButton>
             </NavLink>         

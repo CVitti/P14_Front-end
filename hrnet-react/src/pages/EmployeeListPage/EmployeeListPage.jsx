@@ -21,8 +21,8 @@ export default function EmployeeListPage(){
             <h2 className="flex sectionTitle">Current employees list</h2>            
                 <div className="buttonsContainer flex flex--row">
                     <NavLink to="/">
-                        <CustomButton 
-                            icon={<FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>}>  
+                        <CustomButton >
+                            <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
                             Back to home
                         </CustomButton>
                     </NavLink>   

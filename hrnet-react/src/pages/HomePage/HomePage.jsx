@@ -19,8 +19,8 @@ export default function HomePage(){
             <section className="flex flex--column homeSection">
                 <h2 className="flex sectionTitle">Home page</h2>
                 <NavLink to="/create">
-                    <CustomButton 
-                        icon={<FontAwesomeIcon icon={faUserPlus} color="#FFFFFF" fixedWidth size="xl"/>}>  
+                    <CustomButton >
+                        <FontAwesomeIcon icon={faUserPlus} color="#FFFFFF" fixedWidth size="xl"/>
                         Create a new employee
                     </CustomButton>
                 </NavLink>

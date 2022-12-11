@@ -22,8 +22,8 @@ export default function ErrorPage(){
                     This page doesn't exist.
                 </p>        
                 <NavLink to="/">
-                    <CustomButton 
-                        icon={<FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>}>  
+                    <CustomButton >
+                        <FontAwesomeIcon icon={faHouse} color="#FFFFFF" fixedWidth size="xl"/>
                         Back to home
                     </CustomButton>
                 </NavLink>         

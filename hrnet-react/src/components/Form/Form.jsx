@@ -12,21 +12,22 @@ import { departments, states } from "../../data/data.js";
 
 // Custom components import
 import { Modal } from "hrnet-react-components";
+import Select from 'react-select';
 import CustomButton from "../CustomButton/CustomButton";
 
 // React/React-router/React-redux import
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux"; 
 
 // Store functions import
 import { setModalDisplay, setLastSavedEmployee } from "../../store/store";
-import React from "react";
 
 export default function Form(){
 
     const dispatch = useDispatch();
     const modalIsOpen = useSelector((state) => state.hrStore.isModalOpen);
     const lastEmployee = useSelector((state) => state.hrStore.lastSavedEmployee);
-  
+
     /**
      * Function that saves the display state of the modal
      */
@@ -36,49 +37,38 @@ export default function Form(){
 
     function saveEmployee(e){
         e.preventDefault();
-        const firstName = document.getElementById('first-name').value;
-        const lastName = document.getElementById('last-name').value;
-        const dateOfBirth = document.getElementById('date-of-birth').value;
-        const startDate = document.getElementById('start-date').value;
-        const department = document.getElementById('department').value;
-        const street = document.getElementById('street').value;
-        const city = document.getElementById('city').value;
-        const state = document.getElementById('state').value;
-        const zipCode = document.getElementById('zip-code').value;
 
-        let currentEmployee = {};
+        let currentEmployee = {
+            firstName: document.getElementById('first-name').value,
+            lastName: document.getElementById('last-name').value,
+            dateOfBirth: document.getElementById('date-of-birth').value,
+            startDate: document.getElementById('start-date').value,
+            department: document.getElementsByName('department')[0].value,
+            street: document.getElementById('street').value,
+            city: document.getElementById('city').value,
+            state: document.getElementsByName('state')[0].value,
+            zipCode: document.getElementById('zip-code').value
+        };
 
-        if (firstName === "" || 
-            lastName === "" || 
-            dateOfBirth === "" || 
-            startDate === "" || 
-            department === "" || 
-            street === "" || 
-            city === "" || 
-            state === "" || 
-            zipCode === "" ) 
+        if (currentEmployee.firstName === "" || 
+            currentEmployee.lastName === "" || 
+            currentEmployee.dateOfBirth === "" || 
+            currentEmployee.startDate === "" || 
+            currentEmployee.department === "" || 
+            currentEmployee.street === "" || 
+            currentEmployee.city === "" || 
+            currentEmployee.state === "" || 
+            currentEmployee.zipCode === "" ) 
         {
             document.getElementById("formError").classList.add("flex");
             document.getElementById("formError").classList.remove("hidden");
         } else {
             document.getElementById("formError").classList.remove("flex");
             document.getElementById("formError").classList.add("hidden");
-            currentEmployee = {
-                firstName: firstName,
-                lastName: lastName,
-                dateOfBirth: dateOfBirth,
-                startDate: startDate,
-                department: department,
-                street: street,
-                city: city,
-                state: state,
-                zipCode: zipCode
-            };
             dispatch(setModalDisplay());
             dispatch(setLastSavedEmployee(currentEmployee));
             document.forms["create-employee"].reset();
         }
-        
     }
 
     return(
@@ -103,28 +93,46 @@ export default function Form(){
                             <input id="start-date" type="date" required />
                         </div>
                         <div className="flex flex--column">
-                            <label htmlFor="department">Department</label>
-                            <select name="department" id="department" required>
-                                {
-                                    departments.map((dpt) => (
-                                        <option key={dpt}>{dpt}</option>
-                                    ))
-                                }
-                            </select>
+                        <label htmlFor="department">Department</label>
+                            <Select 
+                                inputId="department" 
+                                name="department" 
+                                isClearable 
+                                isSearchable 
+                                required 
+                                options={departments} 
+                                styles={{
+                                    control: (baseStyles) => ({
+                                      ...baseStyles,
+                                      borderColor: "#146EBE",
+                                      borderWidth: "2px",
+                                      fontWeight: "500"
+                                    }),
+                                }}
+                            />
                         </div>
                     </div>
 
                     <fieldset className="flex flex--column inputContainer">
-                        <legend>Address</legend>
+                        <legend className="adress">Address</legend>
                         <div className="flex flex--column">
-                            <label htmlFor="state">State</label>
-                            <select name="state" id="state" required >
-                                {
-                                    states.map((state) => (
-                                        <option key={state.abbreviation} value={state.abbreviation} name={state.name}>{state.name}</option>
-                                    ))
-                                }
-                            </select>
+                            <label htmlFor="state">States</label>
+                            <Select 
+                                id="state" 
+                                name="state" 
+                                isClearable 
+                                isSearchable 
+                                required 
+                                options={states} 
+                                styles={{
+                                    control: (baseStyles) => ({
+                                      ...baseStyles,
+                                      borderColor: "#146EBE",
+                                      borderWidth: "2px",
+                                      fontWeight: "500"
+                                    }),
+                                }}
+                            />
                         </div>
                         <div className="flex flex--column">
                             <label htmlFor="street">Street</label>
@@ -145,9 +153,8 @@ export default function Form(){
                     All fields from the form must be completed before saving employee
                 </div>
 
-                <CustomButton 
-                    action={saveEmployee}
-                    icon={<FontAwesomeIcon icon={faFloppyDisk} color="#FFFFFF" fixedWidth size="xl"/>}>  
+                <CustomButton action={saveEmployee}>
+                    <FontAwesomeIcon icon={faFloppyDisk} color="#FFFFFF" fixedWidth size="xl"/>
                     Save
                 </CustomButton>
             </form>

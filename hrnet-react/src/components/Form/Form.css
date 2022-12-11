@@ -6,24 +6,34 @@ form{
     width: 100%;
 }
 
-input, select{
+input{
     padding: 10px;
     border-radius: 5px;
     border: solid 2px #146EBE;
-    outline-color: #74C0FC;
+    transition: all 100ms;
 }
 
-input:focus-within, select:focus-within{
-    border-color: #74C0FC;
-    outline-color: #74C0FC;
+/* Native Input focus/hover and react-select blocks hover */
+input:focus-within, input:hover, div.css-16uk4ev-control:hover, div.css-1i7uzf2-control:hover{
+    border-color: #0e4270;
+    outline-color: #0e4270;
+    box-shadow: none;
 }
 
-label, input, select, fieldset, legend{
+div.css-16uk4ev-controln, div.css-1i7uzf2-control{
+    box-shadow: none;
+}
+
+label, input, fieldset.inputContainer, fieldset.inputContainer legend.adress{
     font-weight: 500;
     margin: 0px;
 }
 
-legend{
+label{
+    margin-bottom: 5px;
+}
+
+fieldset.inputContainer legend.adress{
     padding: 0px 10px;
     border: solid 2px #146EBE;
     border-radius: 5px;
@@ -48,7 +58,7 @@ fieldset.inputContainer{
     border: solid 1px #d6d6d6;
     border-radius: 10px;
     padding: 9px;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 @media screen and (max-width:900px){

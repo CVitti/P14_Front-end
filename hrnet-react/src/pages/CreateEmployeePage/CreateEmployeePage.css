@@ -1,33 +1,4 @@
-/* Modal content style */
-.createModalTitle{
-    justify-content: center;
-    margin: 5px 0px 15px 0px;
-}
-
-.createModalItem{
-    display: flex;
-    column-gap: 5px;
-    align-items: center;
-}
-
-ul.createModalList{
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    margin: 0px;
-    padding: 0px;
-}
-
-ul.createModalList li svg{
-    margin-right: 10px;
-}
-
-span.employeData{
-    font-weight: 500;
-}
-
-/* Page content */
-
+/* CreateEmployeePage content */
 .createSection{
     align-items: center;
     row-gap: 15px;

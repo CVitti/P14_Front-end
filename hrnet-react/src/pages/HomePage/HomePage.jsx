@@ -13,6 +13,10 @@ import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 // Custom components import
 import CustomButton from "../../components/CustomButton/CustomButton";
 
+/**
+ * Homepage of the app with a button to acces to the CreateEmployee page
+ * @returns JSX Code for the homepage
+ */
 export default function HomePage(){
     return (
         <main>

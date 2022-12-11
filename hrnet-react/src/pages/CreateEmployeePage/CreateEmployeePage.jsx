@@ -14,14 +14,21 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faHouse } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Page used to create a new employee and access to current employees list page
+ * @returns JSX Code for the CreateEmployeePage with the form and navigation buttons
+ */
 export default function CreateEmployeePage(){
   return(
       <main>
         <section className="flex flex--column createSection">
           <h2 className="flex sectionTitle">Create Employee</h2>
+
+          {/* Form used to create a new employee */}
           <Form />
           
-          <div className="buttonsContainer flex flex--row">
+          {/* Navigation buttons */}
+          <nav className="buttonsContainer flex flex--row">
             <NavLink to="/list">
               <CustomButton>
                 <FontAwesomeIcon icon={faList} color="#FFFFFF" fixedWidth size="xl"/>  
@@ -34,7 +41,7 @@ export default function CreateEmployeePage(){
                 Back to home
               </CustomButton>
             </NavLink>         
-          </div>
+          </nav>
         </section>
       </main>
   );

@@ -13,6 +13,10 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 // Custom components import
 import CustomButton from "../../components/CustomButton/CustomButton";
 
+/**
+ * Error page displayed in case of wrong route
+ * @returns JSX Code for the error page
+ */
 export default function ErrorPage(){
     return(
         <main className="errorMain">

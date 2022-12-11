@@ -13,7 +13,12 @@ import EmployeeListPage from "../pages/EmployeeListPage/EmployeeListPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
 import Header from '../components/Header/Header';
 
-function Router() {
+
+/**
+ * Router of the app, managing page to display and routing error cases
+ * @returns JSX code of the page accordign to current route
+ */
+export default function Router() {
   return (
     <BrowserRouter>
       <Header /> 
@@ -31,5 +36,3 @@ function Router() {
     </BrowserRouter>     
   );
 }
-
-export default Router;

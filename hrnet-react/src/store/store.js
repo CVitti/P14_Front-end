@@ -2,52 +2,50 @@
 
 // Redux Toolkit import
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import {combineReducers} from "redux";
+// Redux persist import
+import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage,
+}
 
 /* Creating a slice of the store. */
 const hrStore = createSlice({
     name: 'hrnet',
     initialState: {
-        isModalOpen: false,
-        lastSavedEmployee : {
-            firstName: "",
-            lastName: "",
-            dateOfBirth: "1970-01-01",
-            startDate: "1970-01-01",
-            department: "",
-            street: "",
-            city: "",
-            state: "",
-            zipCode: ""
-        }
+        employeesList: []
     },
-   
+    
     reducers: {
-        setModalDisplay: (state) => {
-            state.isModalOpen = !state.isModalOpen;
-        },
-        setLastSavedEmployee: (state, data) => {
-            state.lastSavedEmployee.firstName = data.payload.firstName;
-            state.lastSavedEmployee.lastName = data.payload.lastName;
-            state.lastSavedEmployee.dateOfBirth = data.payload.dateOfBirth;
-            state.lastSavedEmployee.startDate = data.payload.startDate;
-            state.lastSavedEmployee.department = data.payload.department;
-            state.lastSavedEmployee.street = data.payload.street;
-            state.lastSavedEmployee.city = data.payload.city;
-            state.lastSavedEmployee.state = data.payload.state;
-            state.lastSavedEmployee.zipCode = data.payload.zipCode;
+        addEmployee: (state, data) => {
+            state.employeesList.push(data.payload);
         }
     },
 }) 
 
-export const { setModalDisplay, setLastSavedEmployee } = hrStore.actions;
+const reducers = combineReducers({
+    hrnet: hrStore.reducer
+});
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export const { addEmployee } = hrStore.actions;
 
 // Enabling redux devtools for the redux browser extension
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 /* Creating a store with the reducer. */
 export const store = configureStore({
-    reducer: {
-        hrStore: hrStore.reducer,
-    },
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
     reduxDevtools
 })

@@ -1,13 +1,10 @@
+/* Global typography */
 *{
     font-family: 'Montserrat';
     font-style: normal;
 }
 
-body{
-    max-width: 1440px;
-    margin: auto;
-}
-
+/* Global classes */
 .bold{
     font-weight: 600;
 }
@@ -32,7 +29,7 @@ body{
     flex-direction: column;
 }
 
-/* Page title */
+/* global Page secondary title */
 h2.sectionTitle{
     font-size: 24px;
     font-weight: 600;
@@ -40,7 +37,12 @@ h2.sectionTitle{
     width: fit-content;
 }
 
-/* Global blocks style */
+/* Global app style */
+body{
+    max-width: 1440px;
+    margin: auto;
+}
+
 main{
     display: flex;
     flex-direction: column;

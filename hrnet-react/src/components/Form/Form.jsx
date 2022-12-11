@@ -10,31 +10,41 @@ import { faFloppyDisk, faIdCard, faUserPlus, faCalendarDay, faUsersRectangle, fa
 // Data import
 import { departments, states } from "../../data/data.js";
 
+// React/React-router/React-redux import
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux"; 
+
 // Custom components import
 import { Modal } from "hrnet-react-components";
 import Select from 'react-select';
 import CustomButton from "../CustomButton/CustomButton";
 
-// React/React-router/React-redux import
-import React from "react";
-import { useDispatch, useSelector } from "react-redux"; 
-
 // Store functions import
-import { setModalDisplay, setLastSavedEmployee } from "../../store/store";
+import { addEmployee } from "../../store/store";
 
+/**
+ * Form used to create a new employee
+ * @returns JSX Code for the form
+ */
 export default function Form(){
 
     const dispatch = useDispatch();
-    const modalIsOpen = useSelector((state) => state.hrStore.isModalOpen);
-    const lastEmployee = useSelector((state) => state.hrStore.lastSavedEmployee);
+    const [ createdEmployee, setCreatedEmployee ] = useState({});
+    const [ modalDisplay, setModalDisplay ] = useState(false);
 
     /**
-     * Function that saves the display state of the modal
+     * Function that sets the display state of the modal
      */
     function manageModalState(){
-      dispatch(setModalDisplay()); 
+        setModalDisplay(!modalDisplay); 
     }
 
+    /**
+     * Check if all fields from the form are non-empty.
+     * If at least one field is empty, display an error and form is not validated.
+     * Else hide error if already shown, open modal with employee data and save created employee, then reset form fields.
+     * @param {object} e Triggered event (click on form validation button)
+     */
     function saveEmployee(e){
         e.preventDefault();
 
@@ -65,8 +75,9 @@ export default function Form(){
         } else {
             document.getElementById("formError").classList.remove("flex");
             document.getElementById("formError").classList.add("hidden");
-            dispatch(setModalDisplay());
-            dispatch(setLastSavedEmployee(currentEmployee));
+            manageModalState();
+            setCreatedEmployee(currentEmployee);
+            dispatch(addEmployee(currentEmployee));
             document.forms["create-employee"].reset();
         }
     }
@@ -75,6 +86,8 @@ export default function Form(){
         <React.Fragment>
             <form action="#" id="create-employee" className="flex flex--column">
                 <div className="flex flex--row formContainer">
+
+                    {/* Employee data part of the form */}
                     <div className="flex flex--column inputContainer">
                         <div className="flex flex--column">
                             <label htmlFor="first-name">First Name</label>
@@ -95,44 +108,43 @@ export default function Form(){
                         <div className="flex flex--column">
                         <label htmlFor="department">Department</label>
                             <Select 
-                                inputId="department" 
-                                name="department" 
-                                isClearable 
-                                isSearchable 
-                                required 
-                                options={departments} 
-                                styles={{
-                                    control: (baseStyles) => ({
-                                      ...baseStyles,
-                                      borderColor: "#146EBE",
-                                      borderWidth: "2px",
-                                      fontWeight: "500"
-                                    }),
-                                }}
-                            />
+                            inputId="department" 
+                            name="department" 
+                            isClearable 
+                            isSearchable 
+                            required 
+                            options={departments} 
+                            styles={{
+                                control: (baseStyles) => ({
+                                    ...baseStyles,
+                                    borderColor: "#146EBE",
+                                    borderWidth: "2px",
+                                    fontWeight: "500"
+                                }),
+                            }}/>
                         </div>
                     </div>
 
+                    {/* Adress part of the form */}
                     <fieldset className="flex flex--column inputContainer">
                         <legend className="adress">Address</legend>
                         <div className="flex flex--column">
                             <label htmlFor="state">States</label>
                             <Select 
-                                id="state" 
-                                name="state" 
-                                isClearable 
-                                isSearchable 
-                                required 
-                                options={states} 
-                                styles={{
-                                    control: (baseStyles) => ({
-                                      ...baseStyles,
-                                      borderColor: "#146EBE",
-                                      borderWidth: "2px",
-                                      fontWeight: "500"
-                                    }),
-                                }}
-                            />
+                            id="state" 
+                            name="state" 
+                            isClearable 
+                            isSearchable 
+                            required 
+                            options={states} 
+                            styles={{
+                                control: (baseStyles) => ({
+                                    ...baseStyles,
+                                    borderColor: "#146EBE",
+                                    borderWidth: "2px",
+                                    fontWeight: "500"
+                                }),
+                            }}/>
                         </div>
                         <div className="flex flex--column">
                             <label htmlFor="street">Street</label>
@@ -149,20 +161,22 @@ export default function Form(){
                     </fieldset>
                 </div>
 
+                {/* Error block displayed on form submit if needed */}
                 <div className="hidden formError" id="formError">
                     All fields from the form must be completed before saving employee
                 </div>
 
+                {/* Form validation button */}
                 <CustomButton action={saveEmployee}>
                     <FontAwesomeIcon icon={faFloppyDisk} color="#FFFFFF" fixedWidth size="xl"/>
                     Save
                 </CustomButton>
             </form>
 
+            {/* Custom modal displayed on valid form submit */}
             <Modal
-                isOpen={modalIsOpen}
-                modalClose={manageModalState}
-            >
+            isOpen={modalDisplay}
+            modalClose={manageModalState}>
                 <ul className="createModalList">
                     <li className="createModalTitle createModalItem">
                         <FontAwesomeIcon icon={faUserPlus} color="#0ca00c" fixedWidth size="xl"/>
@@ -170,20 +184,20 @@ export default function Form(){
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faIdCard} color="#146EBE" fixedWidth size="xl"/>
-                        <span className="employeData">{lastEmployee.lastName} {lastEmployee.firstName} </span>
-                        (Born on <span className="employeData">{lastEmployee.dateOfBirth}</span>)
+                        <span className="employeeData">{createdEmployee.lastName} {createdEmployee.firstName},</span>
+                        Born on <span className="employeeData">{createdEmployee.dateOfBirth}</span>
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faCalendarDay} color="#146EBE" fixedWidth size="xl"/>
-                        Started on <span className="employeData">{lastEmployee.startDate}</span>
+                        Started on <span className="employeeData">{createdEmployee.startDate}</span>
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faUsersRectangle} color="#146EBE" fixedWidth size="xl"/>
-                        <span className="employeData">{lastEmployee.department}</span>Department
+                        <span className="employeeData">{createdEmployee.department}</span>Department
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faHouseChimneyUser} color="#146EBE" fixedWidth size="xl"/>
-                        <span className="employeData">{lastEmployee.street}, {lastEmployee.city}, {lastEmployee.zipCode}, {lastEmployee.state}</span>
+                        <span className="employeeData">{createdEmployee.street}, {createdEmployee.city}, {createdEmployee.zipCode}, {createdEmployee.state}</span>
                     </li>
                 </ul>       
             </Modal>

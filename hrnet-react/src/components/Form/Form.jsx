@@ -12,12 +12,13 @@ import { departments, states } from "../../data/data.js";
 
 // React/React-router/React-redux import
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch } from "react-redux"; 
 
 // Custom components import
 import { Modal } from "hrnet-react-components";
-import Select from 'react-select';
 import CustomButton from "../CustomButton/CustomButton";
+import CustomSelect from "./CustomSelect/CustomSelect";
+import CustomDatePicker from "./CustomDatePicker/CustomDatePicker";
 
 // Store functions import
 import { addEmployee } from "../../store/store";
@@ -99,29 +100,15 @@ export default function Form(){
                         </div>
                         <div className="flex flex--column">
                             <label htmlFor="date-of-birth">Date of Birth</label>
-                            <input id="date-of-birth" type="date" required />
+                            <CustomDatePicker id="date-of-birth"/>
                         </div>
                         <div className="flex flex--column">
                             <label htmlFor="start-date">Start Date</label>
-                            <input id="start-date" type="date" required />
+                            <CustomDatePicker id="start-date"/>
                         </div>
                         <div className="flex flex--column">
                         <label htmlFor="department">Department</label>
-                            <Select 
-                            inputId="department" 
-                            name="department" 
-                            isClearable 
-                            isSearchable 
-                            required 
-                            options={departments} 
-                            styles={{
-                                control: (baseStyles) => ({
-                                    ...baseStyles,
-                                    borderColor: "#146EBE",
-                                    borderWidth: "2px",
-                                    fontWeight: "500"
-                                }),
-                            }}/>
+                            <CustomSelect data={departments} inputId="department"/>
                         </div>
                     </div>
 
@@ -130,21 +117,7 @@ export default function Form(){
                         <legend className="adress">Address</legend>
                         <div className="flex flex--column">
                             <label htmlFor="state">States</label>
-                            <Select 
-                            id="state" 
-                            name="state" 
-                            isClearable 
-                            isSearchable 
-                            required 
-                            options={states} 
-                            styles={{
-                                control: (baseStyles) => ({
-                                    ...baseStyles,
-                                    borderColor: "#146EBE",
-                                    borderWidth: "2px",
-                                    fontWeight: "500"
-                                }),
-                            }}/>
+                            <CustomSelect data={states} inputId="state"/>
                         </div>
                         <div className="flex flex--column">
                             <label htmlFor="street">Street</label>

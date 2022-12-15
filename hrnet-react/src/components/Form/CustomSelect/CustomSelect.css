@@ -1,0 +1,10 @@
+/* React-select blocks hover */
+input:focus-within, input:hover, div.css-16uk4ev-control:hover, div.css-1i7uzf2-control:hover{
+    border-color: #0e4270;
+    outline-color: #0e4270;
+    box-shadow: none;
+}
+
+div.css-16uk4ev-controln, div.css-1i7uzf2-control{
+    box-shadow: none;
+}

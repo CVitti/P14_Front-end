@@ -12,7 +12,7 @@ import { departments, states } from "../../data/data.js";
 
 // React/React-router/React-redux import
 import React, { useState } from "react";
-import { useDispatch } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux"; 
 
 // Custom components import
 import { Modal } from "hrnet-react-components";
@@ -21,7 +21,7 @@ import CustomSelect from "./CustomSelect/CustomSelect";
 import CustomDatePicker from "./CustomDatePicker/CustomDatePicker";
 
 // Store functions import
-import { addEmployee } from "../../store/store";
+import { addEmployee, setCurrentId } from "../../store/store";
 
 /**
  * Form used to create a new employee
@@ -32,6 +32,7 @@ export default function Form(){
     const dispatch = useDispatch();
     const [ createdEmployee, setCreatedEmployee ] = useState({});
     const [ modalDisplay, setModalDisplay ] = useState(false);
+    const currentId = useSelector((state) => state.hrnet.currentId);
 
     /**
      * Function that sets the display state of the modal
@@ -50,6 +51,7 @@ export default function Form(){
         e.preventDefault();
 
         let currentEmployee = {
+            id: (parseInt(currentId) + 1),
             firstName: document.getElementById('first-name').value,
             lastName: document.getElementById('last-name').value,
             dateOfBirth: document.getElementById('date-of-birth').value,
@@ -76,9 +78,10 @@ export default function Form(){
         } else {
             document.getElementById("formError").classList.remove("flex");
             document.getElementById("formError").classList.add("hidden");
-            manageModalState();
             setCreatedEmployee(currentEmployee);
+            manageModalState();
             dispatch(addEmployee(currentEmployee));
+            dispatch(setCurrentId());
             document.forms["create-employee"].reset();
         }
     }
@@ -157,16 +160,16 @@ export default function Form(){
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faIdCard} color="#146EBE" fixedWidth size="xl"/>
-                        <span className="employeeData">{createdEmployee.lastName} {createdEmployee.firstName},</span>
-                        Born on <span className="employeeData">{createdEmployee.dateOfBirth}</span>
+                        <span className="employeeData">{createdEmployee.lastName} {createdEmployee.firstName}</span>
+                        &nbsp;(Born on&nbsp;<span className="employeeData">{createdEmployee.dateOfBirth}</span>)
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faCalendarDay} color="#146EBE" fixedWidth size="xl"/>
-                        Started on <span className="employeeData">{createdEmployee.startDate}</span>
+                        Started on&nbsp;<span className="employeeData">{createdEmployee.startDate}</span>
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faUsersRectangle} color="#146EBE" fixedWidth size="xl"/>
-                        <span className="employeeData">{createdEmployee.department}</span>Department
+                        <span className="employeeData">{createdEmployee.department}</span>&nbsp;Department
                     </li>
                     <li className="createModalItem">
                         <FontAwesomeIcon icon={faHouseChimneyUser} color="#146EBE" fixedWidth size="xl"/>

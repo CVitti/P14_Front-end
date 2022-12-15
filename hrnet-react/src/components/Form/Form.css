@@ -92,7 +92,6 @@ input:focus-within, input:hover{
 
 .createModalItem{
     display: flex;
-    column-gap: 5px;
     align-items: center;
 }
 

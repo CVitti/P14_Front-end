@@ -17,12 +17,16 @@ const persistConfig = {
 const hrStore = createSlice({
     name: 'hrnet',
     initialState: {
-        employeesList: []
+        employeesList: [],
+        currentId:0
     },
     
     reducers: {
         addEmployee: (state, data) => {
             state.employeesList.push(data.payload);
+        },
+        setCurrentId: (state) =>{
+            state.currentId ++;
         }
     },
 }) 
@@ -33,7 +37,7 @@ const reducers = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const { addEmployee } = hrStore.actions;
+export const { addEmployee,setCurrentId } = hrStore.actions;
 
 // Enabling redux devtools for the redux browser extension
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();

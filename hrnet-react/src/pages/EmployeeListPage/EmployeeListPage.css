@@ -1,4 +1,6 @@
 /* EmployeeListPage style */
 .listSection{
     align-items: center;
+    width: 100%;
+    row-gap: 30px;
 }

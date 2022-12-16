@@ -14,18 +14,24 @@ This repository contains all the source code to install and run the HRnet app.
 - [Node.js v16.15.0](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 
+### External libraries used to build this project
+
+- [React-select](https://react-select.com/home)
+- [React-datepicker](https://reactdatepicker.com/)
+- [MUI](https://mui.com/)
+- [FontAwesome Icons](https://fontawesome.com/)
+
+### Custom component used to build this project
+
+- [Modal component on GitHub](https://github.com/CVitti/P14_Custom-components)
+- [Modal component on npm](https://www.npmjs.com/package/hrnet-react-components)
+
 ### Project setup
 
 - Clone the front-end repo in the directory of your choice.
 
 ````
 git clone https://github.com/CVitti/P14-Front-end.git
-````
-
-- This project uses custom components from the following repository :
-
-````
-https://github.com/CVitti/P14_Custom-components
 ````
 
 - Package installations after cloning.

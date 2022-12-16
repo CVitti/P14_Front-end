@@ -4,7 +4,7 @@
 import '../styles/global.css';
 
 // React/React-router/Redux components import
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 
 // Custom components import
 import HomePage from "../pages/HomePage/HomePage"
@@ -20,7 +20,7 @@ import Header from '../components/Header/Header';
  */
 export default function Router() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header /> 
         <Routes> 
                   
@@ -33,6 +33,6 @@ export default function Router() {
           {/* Error Route */}
           <Route path="*" element={<ErrorPage />}/>
         </Routes>
-    </BrowserRouter>     
+    </HashRouter>     
   );
 }
